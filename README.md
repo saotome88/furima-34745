@@ -24,17 +24,16 @@ Things you may want to cover:
 * ...
 
 ## Usersテーブル
-
-| Colum           | Type   | Options     |
-|-----------------|--------|-------------|
-| nick_name       | string | null: false |
-| email           | string | null: false |
-| password        | string | null: false |
-| last_name       | string | null: false |
-| first_name      | string | null: false |
-| last_name_kana  | string | null: false |
-| first_name_kana | string | null: false |
-| birthday        | date   | null: false |
+| Colum              | Type   | Options                   |
+|--------------------|--------|---------------------------|
+| nick_name          | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 -has_many :items
@@ -42,18 +41,17 @@ Things you may want to cover:
 
 
 ## Itemsテーブル
-
-| Colum           | Type       | Options                        |
-|-----------------|------------|--------------------------------|
-| user            | references | null: false, foreign_key: true |
-| name            | string     | null: false                    |
-| description     | text       | null: false                    |
-| category        | string     | null: false                    |
-| condition       | string     | null: false                    |
-| delivery_charge | string     | null: false                    |
-| shipment_source | string     | null: false                    |
-| shipping_days   | string     | null: false                    |
-| price           | integer    | null: false                    |
+| Colum              | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| user               | references | null: false, foreign_key: true |
+| name               | string     | null: false                    |
+| description        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| shipment_source_id | integer    | null: false                    |
+| shipping_days_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
 *imageはActiveStorageで実装する。
 
 ### Association
@@ -62,22 +60,29 @@ Things you may want to cover:
 
 
 ## Purchasesテーブル
-
-| Colum                         | Type       | Options                        |
-|-------------------------------|------------|--------------------------------|
-| user                          | references | null: false, foreign_key: true |
-| item                          | references | null: false, foreign_key: true |
-| card_number                   | integer    | null: false                    |
-| card_expiration_year          | integer    | null: false                    |
-| card_expiration_month         | integer    | null: false                    |
-| card_security_code            | integer    | null: false                    |
-| shipping_postal_code          | string     | null: false                    |
-| shipping_address_prefecture   | string     | null: false                    |
-| shipping_address_municipality | string     | null: false                    |
-| shipping_address_number       | string     | null: false                    |
-| shipping_address_building     | string     | null: true                     |
-| shipping_phone_number         | integer    | null: false                    |
+| Colum       | Type       | Options                        |
+|-------------|------------|--------------------------------|
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
+| buyer       | references | null: false, foreign_key: true |
 
 ### Association
 -belongs_to :user
 -belongs_to :item
+-has_one :buyer
+
+
+## Buyersテーブル
+| Colum                         | Type       | Options                        |
+|-------------------------------|------------|--------------------------------|
+| purchase                      | references | null: false, foreign_key: true |
+| shipping_postal_code          | string     | null: false                    |
+| shipping_address_prefecture   | string     | null: false                    |
+| shipping_address_municipality | string     | null: false                    |
+| shipping_address_number       | string     | null: false                    |
+| shipping_address_building     | string     |                                |
+| shipping_phone_number         | string     | null: false                    |
+※クレジットカード情報はpayjpにて管理する。
+
+### Association
+-belongs_to :purchase
