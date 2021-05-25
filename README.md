@@ -50,7 +50,7 @@ Things you may want to cover:
 | condition_id       | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| shipping_days_id   | integer    | null: false                    |
+| shipping_day_id    | integer    | null: false                    |
 | price              | integer    | null: false                    |
 *imageはActiveStorageで実装する。
 

@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="JxPmSkDwHnnySQWNx_uN" name="ページ1">
-        <mxGraphModel dx="412" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1138" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -10,7 +10,7 @@
                 <mxCell id="7" value="Items" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="520" y="40" width="200" height="310" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="- user_id&#10;&#10;- image(ActiveStorage使用)&#10;&#10;- name&#10;&#10;- description&#10;&#10;- category_id&#10;&#10;- condition_id&#10;&#10;- delivery_charge_id&#10;&#10;- prefecture_id&#10;&#10;- shipping_days_id&#10;&#10;- price" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="7" vertex="1">
+                <mxCell id="10" value="- user_id&#10;&#10;- image(ActiveStorage使用)&#10;&#10;- name&#10;&#10;- description&#10;&#10;- category_id&#10;&#10;- condition_id&#10;&#10;- delivery_charge_id&#10;&#10;- prefecture_id&#10;&#10;- shipping_day_id&#10;&#10;- price" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="7" vertex="1">
                     <mxGeometry y="26" width="200" height="284" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="Purchases" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
