@@ -49,7 +49,7 @@ Things you may want to cover:
 | category_id        | integer    | null: false                    |
 | condition_id       | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
-| shipment_source_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | shipping_days_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 *imageはActiveStorageで実装する。
@@ -64,7 +64,6 @@ Things you may want to cover:
 |-------------|------------|--------------------------------|
 | user        | references | null: false, foreign_key: true |
 | item        | references | null: false, foreign_key: true |
-| buyer       | references | null: false, foreign_key: true |
 
 ### Association
 -belongs_to :user
@@ -77,7 +76,7 @@ Things you may want to cover:
 |-------------------------------|------------|--------------------------------|
 | purchase                      | references | null: false, foreign_key: true |
 | shipping_postal_code          | string     | null: false                    |
-| shipping_address_prefecture   | string     | null: false                    |
+| prefecture_id                 | integer    | null: false                    |
 | shipping_address_municipality | string     | null: false                    |
 | shipping_address_number       | string     | null: false                    |
 | shipping_address_building     | string     |                                |
