@@ -6,7 +6,8 @@ FactoryBot.define do
 
     nick_name             {Faker::Name.initials(number: 2)}
     email                 {Faker::Internet.free_email}
-    password              {Faker::Internet.password(min_length: 6)}
+    # passwordは英数字混合が必須のため、テストでは最低12文字以上にしてアプファベットだけになるのを避ける。
+    password              {Faker::Internet.password(min_length: 12)}
     password_confirmation {password}
     last_name             {person.last.kanji}
     first_name            {person.first.kanji}
