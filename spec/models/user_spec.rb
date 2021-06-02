@@ -86,6 +86,11 @@ RSpec.describe User, type: :model do
         another_user.valid?
         expect(another_user.errors.full_messages).to include "Eメールはすでに存在します"
       end
+      it 'emailに@が含まれていない場合は登録できない' do
+        @user.email  = 'test.test.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Eメールは不正な値です"
+      end
       it 'passwordが5文字以下だと登録できない' do
         @user.password = '111aa'
         @user.password_confirmation = '111aa'
@@ -95,6 +100,12 @@ RSpec.describe User, type: :model do
       it 'passwordが数字のみだと登録できない' do
         @user.password = '123456'
         @user.password_confirmation = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワードは不正な値です", "パスワード（確認用）は不正な値です")
+      end
+      it 'passwordが半角英字のみだと登録できない' do
+        @user.password = 'abcabc'
+        @user.password_confirmation = 'abcabc'
         @user.valid?
         expect(@user.errors.full_messages).to include("パスワードは不正な値です", "パスワード（確認用）は不正な値です")
       end
@@ -114,37 +125,37 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "お名前カナ(名字)は不正な値です"
       end
       it 'last_name_kanaが全角漢字入力だと登録できない' do
-        @user.last_name_kana = 'すずき'
+        @user.last_name_kana = '鈴木'
         @user.valid?
         expect(@user.errors.full_messages).to include "お名前カナ(名字)は不正な値です"
       end
       it 'last_name_kanaが半角カナ入力だと登録できない' do
-        @user.last_name_kana = 'すずき'
+        @user.last_name_kana = 'ｽｽﾞｷ'
         @user.valid?
         expect(@user.errors.full_messages).to include "お名前カナ(名字)は不正な値です"
       end
       it 'last_name_kanaが半角英語入力だと登録できない' do
-        @user.last_name_kana = 'すずき'
+        @user.last_name_kana = 'suzuki'
         @user.valid?
         expect(@user.errors.full_messages).to include "お名前カナ(名字)は不正な値です"
       end
       it 'first_name_kanaが全角ひらがな入力だと登録できない' do
-        @user.first_name_kana = 'すずき'
+        @user.first_name_kana = 'たろう'
         @user.valid?
         expect(@user.errors.full_messages).to include "お名前カナ(名前)は不正な値です"
       end
       it 'first_name_kanaが全角漢字入力だと登録できない' do
-        @user.first_name_kana = 'すずき'
+        @user.first_name_kana = '太郎'
         @user.valid?
         expect(@user.errors.full_messages).to include "お名前カナ(名前)は不正な値です"
       end
       it 'first_name_kanaが半角カナ入力だと登録できない' do
-        @user.first_name_kana = 'すずき'
+        @user.first_name_kana = 'ﾀﾛｳ'
         @user.valid?
         expect(@user.errors.full_messages).to include "お名前カナ(名前)は不正な値です"
       end
       it 'first_name_kanaが半角英語入力だと登録できない' do
-        @user.first_name_kana = 'すずき'
+        @user.first_name_kana = 'tarou'
         @user.valid?
         expect(@user.errors.full_messages).to include "お名前カナ(名前)は不正な値です"
       end
