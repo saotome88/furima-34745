@@ -13,10 +13,10 @@ class User < ApplicationRecord
       validates :last_name_kana
       validates :first_name_kana
     end
-    validates :birthday, presence: true
+    validates :birthday
   end
   validates :encrypted_password, :password, :password_confirmation, format: {with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
 
-  has_many :items
-  has_many :purchases
+#  has_many :items
+#  has_many :purchases
 end
