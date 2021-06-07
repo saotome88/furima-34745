@@ -4,10 +4,11 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :condition
   belongs_to :delivery_charge
+  belongs_to :prefecture
 
   # ActiveHashでid:1の"---"で保存されないように設定
   with_options numericality:  { other_than: 1 }
-    validates :category_id, :condition_id, :delivery_charge_id
+    validates :category_id, :condition_id, :delivery_charge_id, :prefecture_id
   end
 
   # 空の値は保存されないようにする。
