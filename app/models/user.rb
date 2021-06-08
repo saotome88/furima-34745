@@ -17,6 +17,6 @@ class User < ApplicationRecord
   end
   validates :encrypted_password, :password, :password_confirmation, format: {with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
 
-#  has_many :items
+  has_many :items
 #  has_many :purchases
 end
