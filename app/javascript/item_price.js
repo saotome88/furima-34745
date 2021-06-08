@@ -6,7 +6,6 @@ function inputPrice() {
     const tax = Math.floor(price * 0.1)
     const profit = Math.floor(price - tax)
 
-    console.log(price);
     const taxPrice = document.getElementById("add-tax-price");
     const profitPrice = document.getElementById("profit");
     taxPrice.innerHTML = tax;
