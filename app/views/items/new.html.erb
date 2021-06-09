@@ -8,8 +8,8 @@
     <%= form_with model: @item, url: items_path, local: true do |f| %>
 
     <%# エラーメッセージの表示%> 
-    <%# 下記renderメソッドの文末に"f.object"があったが用途不明のため削除した。 %>
-    <%= render partial: 'devise/shared/item_error_messages', model: @item %>
+    <%# f.objectで部分テンプレートに@itemを渡す %>
+    <%= render partial: 'devise/shared/item_error_messages', model: f.object %>
 
     <%# 商品画像 %>
     <div class="img-upload">
