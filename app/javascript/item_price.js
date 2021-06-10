@@ -13,5 +13,5 @@ function inputPrice() {
   })
 };
 
-/* 全てのページで発火するが、functionの中身でkeyupを指定しているから良しとする。 */
+/* 下記の記述は全てのページで発火するが、functionの中身でkeyupを指定している */
 window.addEventListener('load', inputPrice);

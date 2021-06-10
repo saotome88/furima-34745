@@ -19,4 +19,4 @@ ja:
         delivery_charge_id: 配送料の負担
         prefecture_id: 発送元
         shipping_day_id: 配送までの日数
-        user : ユーザー
+        user: ユーザー
