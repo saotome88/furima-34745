@@ -1,13 +1,16 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :item_find_purchase, only: [:index, :create]
+  before_action :move_to_index_purchase, only: [:index, :create]
+  before_action :move_to_index_bought, only: [:index, :create]
+
   def index
     # indexビューで商品情報を表示するためにインスタンス変数を生成する
-    @item = Item.find(params[:item_id])
     # エラーメッセージのためにインスタンス変数を生成する
     @purchase_buyer = PurchaseBuyer.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_buyer = PurchaseBuyer.new(purchase_buyer_params)
     if @purchase_buyer.valid?
       pay_item
@@ -31,6 +34,18 @@ class PurchasesController < ApplicationController
       card: purchase_buyer_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def item_find_purchase
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index_purchase
+    redirect_to root_path if current_user.id == @item.user_id
+  end
+
+  def move_to_index_bought
+    redirect_to root_path if @item.purchase.present?
   end
 
 end
