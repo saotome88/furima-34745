@@ -4,6 +4,7 @@ class PurchaseBuyer
   :shipping_address_number, :shipping_address_building, :shipping_phone_number
 
   with_options presence: true do
+    # アソシエーションを設定できないのでuser_idとitem_idもバリデーションに加える
     validates :user_id, :item_id, :shipping_address_municipality,
               :shipping_address_number
     # 郵便番号はハイフン込みの半角数字で123-1234の桁数に指定する
@@ -14,6 +15,7 @@ class PurchaseBuyer
   # 都道府県選択はActivehashなので、0以外の選択させる
   validates :prefecture_id, numericality: { other_than: 0 }
 
+  # それぞれのテーブルにデータを保存する
   def save
     # 変数purchaseにuser_idとitem_idを代入する
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
