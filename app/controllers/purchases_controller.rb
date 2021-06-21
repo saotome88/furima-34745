@@ -1,20 +1,18 @@
 class PurchasesController < ApplicationController
   def index
-    # indexファイルで商品情報を表示するためにインスタンス変数を生成する
+    # indexビューで商品情報を表示するためにインスタンス変数を生成する
     @item = Item.find(params[:item_id])
-  end
-
-  def new
-    @purchase_buyer = PurchaseBuyer.new(params[:item_id])
+    # エラーメッセージのためにインスタンス変数を生成する
+    @purchase_buyer = PurchaseBuyer.new
   end
 
   def create
+    @item = Item.find(params[:item_id])
     @purchase_buyer = PurchaseBuyer.new(purchase_params)
     if @purchase_buyer.valid?
       @purchase_buyer.save
       redirect_to root_path
     else
-      binding.pry
       render :index
     end
   end
