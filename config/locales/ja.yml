@@ -20,3 +20,15 @@ ja:
         prefecture_id: 発送元
         shipping_day_id: 配送までの日数
         user: ユーザー
+    
+  activemodel:
+    attributes:
+      purchase_buyer:
+        shipping: 配送先
+        shipping_address_municipality: 市区町村
+        shipping_address_number: 番地
+        shipping_postal_code: 郵便番号
+        shipping_address_building: 建物名
+        shipping_phone_number: 電話番号
+        prefecture_id: 都道府県
+        token: クレジットカード情報
