@@ -22,13 +22,16 @@ class PurchasesController < ApplicationController
   end
 
   private
+
   def purchase_buyer_params
-    params.require(:purchase_buyer).permit(:shipping_postal_code, :shipping_address_municipality,:prefecture_id, :shipping_address_number, :shipping_address_building, :shipping_phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:purchase_buyer).permit(:shipping_postal_code, :shipping_address_municipality, :prefecture_id, :shipping_address_number, :shipping_address_building, :shipping_phone_number).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
   def pay_item
     # テスト秘密鍵
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: purchase_buyer_params[:token],
@@ -47,5 +50,4 @@ class PurchasesController < ApplicationController
   def move_to_index_bought
     redirect_to root_path if @item.purchase.present?
   end
-
 end
