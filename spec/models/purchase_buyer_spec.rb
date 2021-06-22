@@ -18,6 +18,10 @@ RSpec.describe PurchaseBuyer, type: :model do
         @purchase_buyer.shipping_address_building = ""
         expect(@purchase_buyer).to be_valid
       end
+      it '配送先の電話番号は10桁でも購入ができる' do
+        @purchase_buyer.shipping_phone_number = "1234567890"
+        expect(@purchase_buyer).to be_valid
+      end
     end
 
     context '購入ができない場合' do
@@ -81,8 +85,13 @@ RSpec.describe PurchaseBuyer, type: :model do
         @purchase_buyer.valid?
         expect(@purchase_buyer.errors.full_messages).to include("電話番号は不正な値です")
       end
-      it '配送先で電話番号に11桁より多い入力があると購入ができない' do
-        @purchase_buyer.shipping_phone_number = "123123412345"
+      it '配送先で電話番号に11桁より多い入力だと購入ができない' do
+        @purchase_buyer.shipping_phone_number = "123456789012"
+        @purchase_buyer.valid?
+        expect(@purchase_buyer.errors.full_messages).to include("電話番号は不正な値です")
+      end
+      it '配送先で電話番号に10桁より少ない入力だと購入ができない' do
+        @purchase_buyer.shipping_phone_number = "123456789"
         @purchase_buyer.valid?
         expect(@purchase_buyer.errors.full_messages).to include("電話番号は不正な値です")
       end

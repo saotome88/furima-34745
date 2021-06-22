@@ -9,7 +9,7 @@ class PurchaseBuyer
     # 郵便番号はハイフン込みの半角数字で123-1234の桁数に指定する
     validates :shipping_postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
     # 電話番号は半角数字のみにする
-    validates :shipping_phone_number, format: {with: /\A[0-9]{11}\z/}
+    validates :shipping_phone_number, format: {with: /\A[0-9]{10,11}\z/}
   end
   # 都道府県選択はActivehashなので、0以外の選択させる
   validates :prefecture_id, numericality: { other_than: 0 }
