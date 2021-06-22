@@ -86,6 +86,18 @@ RSpec.describe PurchaseBuyer, type: :model do
         @purchase_buyer.valid?
         expect(@purchase_buyer.errors.full_messages).to include("電話番号は不正な値です")
       end
+      it '購入商品のitem_idが紐づいていないと購入できないこと' do
+        @purchase_buyer.item_id = nil
+        @purchase_buyer.valid?
+        expect(@purchase_buyer.errors.full_messages).to include("Itemを入力してください")
+      end
+      it '購入者のuser_idが紐づいていないと購入できないこと' do
+        @purchase_buyer.user_id = nil
+        @purchase_buyer.valid?
+        expect(@purchase_buyer.errors.full_messages).to include("Userを入力してください")
+      end
     end
   end
 end
+
+# bundle exec rspec spec/models/purchase_buyer_spec.rb
